@@ -1,0 +1,17 @@
+{
+    "version": "1.0.0",
+    "description": "分页指令",
+    "name": "ui-pagination",
+    "main": "ui-pagination.js",
+    "dependencies": [
+        "angular",
+        "bootstrap",
+        "css"
+    ],
+    "shim": {
+        "ui-pagination.js": {
+             "deps": ["angular","css!ui-pagination.css"],
+            "exports": "'ui.pagination'"
+        }
+    }
+}

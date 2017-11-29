@@ -1,0 +1,16 @@
+{
+    "version": "1.7.0",
+    "description": "绑定键盘热键",
+    "name": "angular-hotkeys",
+    "main": "angular-hotkeys.js",
+    "dependencies": [
+        "angular",
+        "css"
+    ],
+    "shim": {
+        "angular-hotkeys.js": {
+            "deps": ["angular", "css!angular-hotkeys.css"],
+            "exports": "'cfp.hotkeys'"
+        }
+    }
+}

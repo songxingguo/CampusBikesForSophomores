@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cp.dao.StudentMapperExtra">
+	<select id="getStudent" resultType="java.util.HashMap">
+		SELECT
+			stu.id,
+			stu.name,
+			sex,
+			id_no AS idNo,
+			student_no AS studentNo,
+			school_id AS schoolId,
+			academy,
+			specialty,
+			user_id AS userId,
+			sch.name AS schoolName,
+			ct.name AS sexName
+		FROM student AS stu,school AS sch,code_table AS ct
+		WHERE stu.school_id = sch.id AND ct.code = stu.sex
+		AND stu.user_id = #{userId,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getIdByUserId" resultType="String">
+		SELECT id FROM student WHERE user_id = #{userId,jdbcType=VARCHAR}
+	</select>
+</mapper>

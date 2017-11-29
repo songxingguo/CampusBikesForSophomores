@@ -1,0 +1,15 @@
+{
+    "version": "1.3.0",
+    "description": "读写cookies的api",
+    "name": "angular-cookies",
+    "main": "angular-cookies.js",
+    "dependencies": [
+        "angular"
+    ],
+    "shim": {
+        "angular-cookies.js": {
+            "deps": ["angular"],
+            "exports": "'ngCookies'"
+        }
+    }
+}

@@ -1,0 +1,29 @@
+/*样式布局*/
+.personalProfile-title {
+    height: 40px;
+    line-height: 40px;
+    margin-left: 20px;
+}
+
+.personalProfile-content {
+    border-top: solid 1px #ccc;
+}
+
+.personalProfile-table {
+    width: 80%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.personalProfile-table tr td {
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    font-size: 12px;
+    color: #2a2a2a;
+}
+
+.button-edit {
+    height: 30px;
+    margin-top: 4px;
+    margin-right: 10px;
+}

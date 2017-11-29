@@ -1,0 +1,42 @@
+/**
+ * Created by songxinguo on 2017/7/5.
+ */
+define(['angularAMD'], function (angularAMD){
+
+    var api="/NewCar/api/loginForPM";//平台登录
+    var apiOM="/NewCar/api/loginForOM";//运营商登录
+    var apiBloc="/NewCar/api/loginForBloc";//集团用户登录
+
+    angularAMD.service('login', function($http) {
+
+        /**
+         * 登录验证
+         * @param user：用户名
+         * @param password：密码
+         */
+        this.loginJudge=function(user,password){
+            return $http.post(api, {userid: user, password : password}).then(function (response) {
+                return response.data;
+            });
+        };
+
+        /**\
+         * 运营商登录
+         */
+        this.loginJudgeOM=function(user,password){
+            return $http.post(apiOM, {userid: user, password : password}).then(function (response) {
+                return response.data;
+            });
+        };
+
+        /**
+         * 集团用户
+         */
+        this.loginJudgeBloc=function(user,password){
+            return $http.post(apiBloc, {userid: user, password : password}).then(function (response) {
+                return response.data;
+            });
+        };
+    });
+
+});

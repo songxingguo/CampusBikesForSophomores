@@ -1,0 +1,11 @@
+{
+    "version": "2.0.0",
+    "description": "A lightweight JavaScript library for creating particles",
+    "name": "particles",
+    "main": "particles.js",
+    "shim": {
+        "particles.js": {
+            "exports": "window.particlesJS"
+        }
+    }
+}

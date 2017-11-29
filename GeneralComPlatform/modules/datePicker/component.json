@@ -1,0 +1,10 @@
+{
+    "version": "4.8.1",
+    "description": "日期时间选择器",
+    "name": "datePicker",
+    "main": "datePicker.js",
+    "dependencies": [
+        "jquery",
+        "css"
+    ]
+}

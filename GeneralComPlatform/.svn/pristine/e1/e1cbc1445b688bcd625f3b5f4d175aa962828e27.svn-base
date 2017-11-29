@@ -1,0 +1,14 @@
+{
+    "version": "2.66.4",
+    "description": "自定义滚动条",
+    "name": "jquery.nicescroll",
+    "main": "jquery.nicescroll.js",
+    "dependencies": [
+        "jquery@^1.8.3"
+    ],
+    "shim": {
+        "jquery.nicescroll.js": {
+            "deps": ["jquery"]
+        }
+    }
+}

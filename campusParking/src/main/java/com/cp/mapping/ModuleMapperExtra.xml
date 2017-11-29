@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cp.dao.ModuleMapperExtra" >
+	<select id="getMaxChildCode" resultType="String">
+		SELECT MAX(code) FROM module
+		<if test="code == null">
+			WHERE parent_code IS NULL
+		</if>
+		<if test="code != null">
+			WHERE parent_code = #{code,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+	<select id="getCodesByIds" resultType="String">
+		SELECT DISTINCT code FROM module WHERE id IN
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id,jdbcType=VARCHAR}
+		</foreach>
+	</select>
+	
+	<delete id="deleteModuleAndChildren">
+		DELETE FROM module WHERE code LIKE <![CDATA[CONCAT(#{code,jdbcType=VARCHAR},'%')]]>
+	</delete>
+	
+	<select id="getModule" resultType="java.util.HashMap">
+		SELECT id,code,parent_code AS parentCode,name,url,icon_url AS iconUrl FROM module WHERE id = #{id,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getModules" resultType="java.util.HashMap">
+		SELECT id,code,parent_code AS parentCode,name,url,icon_url AS iconUrl FROM module WHERE 1 = 1
+		<if test="msDTO.name != null">
+			AND name LIKE <![CDATA[CONCAT('%',#{msDTO.name,jdbcType=VARCHAR},'%')]]>
+		</if>
+		<if test="msDTO.parentCode != null">
+			AND parent_code = #{parentCode,jdbcType=VARCHAR}
+		</if>
+		<if test="msDTO.parentCode == null">
+			AND parent_code IS NULL
+		</if>
+		<if test="start >= 0">
+			LIMIT #{start,jdbcType=INTEGER},#{end,jdbcType=INTEGER}
+		</if>
+	</select>
+</mapper>

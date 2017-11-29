@@ -1,0 +1,113 @@
+package com.cp.authorization.manager.impl;
+
+import com.cp.authorization.manager.TokenManager;
+import com.cp.util.JwtUtil;
+import com.cp.util.StringUtil;
+
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+
+public class RedisTokenManager implements TokenManager {
+	
+	protected JedisPool jedisPool;
+	
+	/**
+	 * token值过期时间
+	 * */
+	private int tokenExpirationSeconds;
+	
+	/**
+	 * 是否单点登陆
+	 * */
+	private boolean singleTokenWithUser;
+	
+	/**
+	 * 签发者
+	 * */
+	private String issuer;
+	
+	/**
+	 * 面向用户
+	 * */
+	private String subject;
+	
+	/**
+	 * 密钥
+	 * */
+	private String apiKey;
+
+	@Override
+	public String createToken(String userId) {
+		String token = JwtUtil.createJWT(userId, issuer, subject, tokenExpirationSeconds, apiKey);
+		
+		if(singleTokenWithUser) {
+			Jedis jedis = jedisPool.getResource();
+			jedis.setex(userId, tokenExpirationSeconds, token);
+			jedis.setex(token, tokenExpirationSeconds, userId);
+			
+			return token;
+		}
+		
+		return null;
+	}
+
+	@Override
+	public void deleteToken(String token) {
+		Jedis jedis = jedisPool.getResource();
+		String key = jedis.get(token);
+		
+		if(singleTokenWithUser) {
+			jedis.del(key);
+		}
+		
+		jedis.del(token);
+	}
+
+	@Override
+	public boolean checkToken(String token) {
+		Jedis jedis = jedisPool.getResource();
+		String key = jedis.get(token);
+		
+		if(StringUtil.isNullOrEmpty(key))
+			return false;
+		
+		if(singleTokenWithUser) {
+			jedis.expire(key, tokenExpirationSeconds);
+		}
+		
+		jedis.expire(token, tokenExpirationSeconds);
+		
+		return true;
+	}
+	
+	@Override
+	public String getKey(String value) {
+		Jedis jedis = jedisPool.getResource();
+		
+		return jedis.get(value);
+	}
+
+	public void setJedisPool(JedisPool jedisPool) {
+		this.jedisPool = jedisPool;
+	}
+
+	public void setTokenExpirationSeconds(int tokenExpirationSeconds) {
+		this.tokenExpirationSeconds = tokenExpirationSeconds;
+	}
+
+	public void setSingleTokenWithUser(boolean singleTokenWithUser) {
+		this.singleTokenWithUser = singleTokenWithUser;
+	}
+	
+	public void setIssuer(String issuer) {
+		this.issuer = issuer;
+	}
+	
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	
+	public void setApiKey(String apiKey) {
+		this.apiKey = apiKey;
+	}
+}

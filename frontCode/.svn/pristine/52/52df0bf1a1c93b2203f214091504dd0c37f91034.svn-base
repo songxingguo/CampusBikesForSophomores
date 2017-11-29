@@ -1,0 +1,33 @@
+<!--引入personalInfo.css-->
+<link rel='stylesheet' href='../cbr-app/personalProfile/personalProfile.css' />
+
+<!--个人资料-->
+<div id="personalProfile" class="">
+    <div class="personalProfile-title">
+       <p class="fl">个人资料</p>
+
+        <button type="button" class="btn btn-success fr button-edit">修改资料</button>
+    </div>
+
+    <!--清除浮动-->
+    <div class="cb"></div>
+
+    <div class="personalProfile-content">
+       <div class="personalProfile-table bc">
+           <table>
+               <tr>
+                   <td width="50%"><p>登录名: <span>8983642737</span></p></td>
+                   <td><label>登录名:</label><span>18983642737</span></td>
+               </tr>
+               <tr>
+                   <td><label>登录名:</label><span>18983642737</span></td>
+                   <td><label>登录名:</label><span>18983642737</span></td>
+               </tr>
+               <tr>
+                   <td><label>登录名:</label><span>18983642737</span></td>
+                   <td><label>登录名:</label><span>18983642737</span></td>
+               </tr>
+           </table>
+       </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+{
+    "name": "angular-translate-handler-log",
+  	"description": "A plugin for Angular Translate",
+  	"version": "2.8.1",
+  	"main": "angular-translate-handler-log.js",
+    "dependencies": [{
+       "angular-translate": "~2.8.1"
+    }]
+}

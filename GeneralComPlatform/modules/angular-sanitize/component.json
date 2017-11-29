@@ -1,0 +1,15 @@
+{
+    "version": "1.3.0",
+    "description": "过滤清洁(安全)的html",
+    "name": "angular-sanitize",
+    "main": "angular-sanitize.js",
+    "dependencies": [
+        "angular"
+    ],
+    "shim": {
+        "angular-sanitize.js": {
+            "deps": ["angular"],
+            "exports": "'ngSanitize'"
+        }
+    }
+}

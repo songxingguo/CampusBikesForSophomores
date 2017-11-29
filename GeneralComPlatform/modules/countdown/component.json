@@ -1,0 +1,6 @@
+{
+    "version": "2.6.0",
+    "description": "一个简单的小工具,精准直观的描述2个日期之前的时间间隔",
+    "name": "countdown",
+    "main": "countdown.js"
+}

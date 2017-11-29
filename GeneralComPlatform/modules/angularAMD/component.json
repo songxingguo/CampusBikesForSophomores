@@ -1,0 +1,9 @@
+{
+    "version": "0.2.1",
+    "description": "Facilitate use of RequireJS in AngularJS",
+    "name": "angularAMD",
+    "main": "angularAMD.js",
+    "dependencies": [
+        "angular"
+    ]
+}

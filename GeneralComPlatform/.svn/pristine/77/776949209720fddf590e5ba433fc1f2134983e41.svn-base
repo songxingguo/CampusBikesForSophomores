@@ -1,0 +1,110 @@
+
+.box-sizing(content-box){
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.reset-box-sizing(){
+  &,
+  *,
+  *:before,
+  *:after {
+    .box-sizing(content-box);
+  }
+}
+
+/*.rgba(@color, @alpha){
+  background-color: @color; /!* background color for IE *!/
+  filter: alpha(opacity=@alpha); /!* opacity filter for IE *!/
+  background-color:fade(@color, @alpha);
+  *zoom:1;
+}*/
+
+.size(@width, @height : @width){
+  width: @width;
+  height: @height;
+}
+
+/*
+less文件中定义的函数
+Animation 动画
+@animation-name规定需要绑定到选择器的 keyframe 名称
+@animation-duration规定完成动画所花费的时间，以秒或毫秒计,默认是 0。
+@animation-timing-function规定动画的速度曲线。默认是 "ease"。
+@animation-delay规定在动画开始之前的延迟。默认是 0。
+@animation-iteration-count规定动画应该播放的次数。默认是 1。
+@animation-direction规定是否应该轮流反向播放动画。默认是 "normal"。
+*/
+.animation(@animation-name, @animation-duration, @animation-timing-function,
+           @animation-delay, @animation-iteration-count, @animation-direction:normal, @animation-fill-mode:none){
+  animation: @arguments;
+  -moz-animation: @arguments;
+  -webkit-animation: @arguments;
+  -o-animation: @arguments;
+}
+
+.transform(@deg){
+  transform:rotate(@deg);
+  -ms-transform:rotate(@deg); 	/* IE 9 */
+  -moz-transform:rotate(@deg); 	/* Firefox */
+  -webkit-transform:rotate(@deg); /* Safari 和 Chrome */
+  -o-transform:rotate(@deg); 	/* Opera */
+}
+
+.rotate(@deg){
+  transform:rotate(@deg);
+  -moz-transform:rotate(@deg); 	/* Firefox */
+  -webkit-transform:rotate(@deg); /* Safari 和 Chrome */
+}
+
+.rotateX(@deg){
+  transform:rotateX(@deg);
+  -moz-transform:rotateX(@deg); 	/* Firefox */
+  -webkit-transform:rotateX(@deg); /* Safari 和 Chrome */
+}
+
+.rotateY(@deg){
+  transform:rotateY(@deg);
+  -moz-transform:rotateY(@deg); 	/* Firefox */
+  -webkit-transform:rotateY(@deg); /* Safari 和 Chrome */
+}
+
+.transition (@prop: all, @time: 1s, @ease: linear, @delay: 0s) {
+  -webkit-transition: @prop @time @ease @delay;
+  -moz-transition: @prop @time @ease @delay;
+  -o-transition: @prop @time @ease @delay;
+  -ms-transition: @prop @time @ease @delay;
+  transition: @prop @time @ease @delay;
+}
+
+.radius (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.blur(@blur: 5px){
+  -webkit-filter: blur(@blur);
+  -moz-filter: blur(@blur);
+  -o-filter: blur(@blur);
+  -ms-filter: blur(@blur);
+}
+
+.user-select-none(){
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+};
+
+.ellipsis(){
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: keep-all;
+};

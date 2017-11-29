@@ -1,0 +1,79 @@
+package com.cp.authorization.interceptor;
+
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Method;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.http.MediaType;
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.cp.authorization.annotation.Authorization;
+import com.cp.authorization.manager.TokenManager;
+import com.cp.util.StringUtil;
+
+public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
+	
+	/**
+     * 存放登录用户模型Key的Request Key
+     */
+    public static final String REQUEST_CURRENT_KEY = "REQUEST_CURRENT_KEY";
+    public static final String REQUEST_CURRENT_NAME = "REQUEST_CURRENT_NAME";
+
+	// 请求头中存储鉴权的名称
+	private static final String AUTHORIZATION_HEAR_NAME = "Authorization";
+
+	// 鉴权失败后返回的错误信息，默认为401 unauthorized
+	private static final String UNAUTHORIZED_ERROR_MESSAGE = "{\"msg\" : \"401 unauthorized\"}";
+
+	// 鉴权失败后返回的HTTP错误码，默认为401
+	private static final int UNAUTHORIZED_ERROR_CODE = HttpServletResponse.SC_UNAUTHORIZED;
+
+	private TokenManager tokenManager;
+
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+
+		// 如果不是映射到方法，直接通过
+		if (!(handler instanceof HandlerMethod)) {
+			return true;
+		}
+
+		HandlerMethod handlerMethod = (HandlerMethod) handler;
+		Method method = handlerMethod.getMethod();
+
+		String token = response.getHeader(AUTHORIZATION_HEAR_NAME);
+		if(!StringUtil.isNullOrEmpty(token)) {
+			String key = tokenManager.getKey(token);
+			
+			if(!StringUtil.isNullOrEmpty(key)) {
+				request.setAttribute(REQUEST_CURRENT_KEY, key);
+	            return true;
+			}
+		}
+		//如果token验证失败并且方法包含Authorization注解，返回401
+		if(method.getAnnotation(Authorization.class) != null //方法上是否有注解
+				|| handlerMethod.getBeanType().getAnnotation(Authorization.class) != null) { //controller上是否有注解
+			response.setStatus(UNAUTHORIZED_ERROR_CODE);
+            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            response.setCharacterEncoding("utf-8");
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(response.getOutputStream()));
+            writer.write(UNAUTHORIZED_ERROR_MESSAGE);
+            writer.close();
+            return false;
+		}
+		
+		//为了防止以恶意操作直接在REQUEST_CURRENT_KEY写入key，将其设为null
+        request.setAttribute(REQUEST_CURRENT_KEY, null);
+        
+		return true;
+	}
+
+	public void setTokenManager(TokenManager tokenManager) {
+		this.tokenManager = tokenManager;
+	}
+}

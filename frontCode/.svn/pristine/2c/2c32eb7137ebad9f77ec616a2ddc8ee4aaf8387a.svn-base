@@ -1,0 +1,114 @@
+<!--引入center.css-->
+<link rel='stylesheet' href='../cbr-app/login/login.css' />
+
+<!--内容  -->
+<div class='login-content bc mt140' >
+    <!--logo-->
+    <div class='login-logo tc'>
+        <img src='../../images/logo.jpg' alt='logo' class='img-circle'>
+    </div>
+
+    <div class='login-title bc'>
+        <ul>
+            <li  class="login-li-border"><a ng-click="switchLogin()">用户登录</a></li>
+            <li><a ng-click="switchLogin()" style="color: #1abb9c">用户注册</a></li>
+        </ul>
+    </div>
+
+    <div class='login-from bc' ng-show="isShowLogin">
+        <form name="login">
+            <div class="form-group">
+                <label for="login-phone"></label>
+                <input type="tel" class="form-control" id="login-phone" placeholder="手机号码" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password"></label>
+                <input type="password" class="form-control" id="login-password" placeholder="密码6-12个字符" required>
+            </div>
+            <div class="register-select">
+                <div class="login-forget">
+                    <a href="#!" style="color: #1abb9c;">忘记密码?</a>
+                </div>
+            </div>
+
+            <!--清除浮动-->
+            <div class="cb"></div>
+
+            <button type="submit" class="btn btn-default btn-sm btn-block mt20" ng-disabled="login.$invalid">登录</button>
+        </form>
+    </div>
+
+    <div class='login-from bc' ng-hide="isShowLogin">
+        <form name="register">
+            <div class="form-group">
+                <label for="register-phone"></label>
+                <input type="tel" class="form-control" id="register-phone" ng-model="registerObject.phoneNumber" placeholder="手机号码" required>
+            </div>
+            <div class="form-group">
+                <label for="register-password"></label>
+                <input type="password" class="form-control" id="register-password" ng-model="registerObject.password" placeholder="密码6-12个字符" required>
+            </div>
+            <div class="form-group">
+                <label for="select-school"></label>
+                <input type="input" class="form-control" id="select-school"  ng-model="registerObject.schoolName" placeholder="--请学校选择--"
+                       data-toggle="modal" data-target="#myModal" readonly required>
+            </div>
+            <div class="form-group register-select">
+                <label class="radio-inline">
+                    <input type="radio" name="user" id="student" value="0" checked="checked" ng-model="registerObject.registerType"> 学生
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="user" id="faculty" value="1" ng-model="registerObject.registerType"> 教职工
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control register-code-input fl ng-pristine ng-invalid ng-invalid-required ng-valid-pattern ng-touched" placeholder="短信验证码" ng-model="registerObject.authenticationCode" ng-change="chkMsgCode()" ng-pattern="/[0-9]{4,6}/" required>
+                <button class="btn btn-success register-send-code fr ng-binding" ng-click="sendCode()" >点击获取验证码</button>
+            </div>
+            <div class="form-group cb tl mt80">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" required> 我已阅读并同意 <a>《颇闰服务协议》</a>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-default btn-sm btn-block mt20" ng-click="registerUser()" ng-disabled="register.$invalid" >注册</button>
+        </form>
+    </div>
+</div>
+
+<!-- 学校选择 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    学校选择
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="model-search bc mt10">
+                    <div class="input-group">
+                        <input type="text" class="form-control ng-pristine ng-valid ng-touched" ng-model="condition.name"  placeholder="请输入2个字(或2个字以上)进行搜索">
+                        <span class="input-group-btn">
+                              <button class="btn btn-default" ng-click="searchSchools()" type="button">搜索</button>
+                          </span>
+                    </div>
+                </div>
+                <div class="model-selected w80 mt20 ml20">搜索结果</div>
+                <div class="model-line"></div>
+                <div class="model-info-list mt30">
+                    <ul>
+                        <li ng-repeat="school in schoolList" ng-click="ensureSchool(school)" style="cursor: pointer;" data-dismiss="modal">{{school.name}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>

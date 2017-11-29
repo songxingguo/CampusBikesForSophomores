@@ -1,0 +1,14 @@
+{
+    "version": "1.0.0",
+    "description": "Facebook-style tooltip plugin for jQuery",
+    "name": "jquery-tipsy",
+    "main": "jquery.tipsy.js",
+    "dependencies": [
+        "jquery@1.8.3"
+    ],
+    "shim": {
+        "jquery.tipsy.js": {
+            "deps": ["jquery"]
+        }
+    }
+}

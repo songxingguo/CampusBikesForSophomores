@@ -1,0 +1,10 @@
+{
+    "version": "1.2.2",
+    "description": "在线富文本编辑器,百度出品.上传图片等功能需要服务器端代码配合使用,请到官网下载! http://ueditor.baidu.com/website/umeditor.html",
+    "name": "umeditor",
+    "main": "umeditor.js",
+    "dependencies": [
+        "jquery@1.8.3",
+        "css"
+    ]
+}

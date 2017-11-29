@@ -1,0 +1,5 @@
+package com.cp.service.login;
+
+public interface LoginService {
+
+}

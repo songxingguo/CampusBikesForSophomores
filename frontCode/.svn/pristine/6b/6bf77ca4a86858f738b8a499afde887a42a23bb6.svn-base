@@ -1,0 +1,18 @@
+<!--入口界面-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>校园自行车租赁系统</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../base-app/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../base-app/css/base.css">
+    <link rel="stylesheet/less" href="../base-app/bootstrap/less/bootstrap.less" media="all" />
+</head>
+<body>
+    <!--登录页面-->
+    <div ui-view>
+    </div>
+
+    <script data-main="main" src="require.js"></script>
+</body>
+</html>

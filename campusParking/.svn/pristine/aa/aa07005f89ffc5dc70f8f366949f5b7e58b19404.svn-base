@@ -1,0 +1,32 @@
+package com.cp.dto;
+
+import javax.validation.constraints.Min;
+
+public class LimitShowDTO {
+
+	@Min(1)
+	private int itemPerPage;
+	
+	@Min(0)
+	private int curPage;
+
+	public int getItemPerPage() {
+		return itemPerPage;
+	}
+
+	public void setItemPerPage(int itemPerPage) {
+		this.itemPerPage = itemPerPage;
+	}
+
+	public int getCurPage() {
+		return curPage;
+	}
+
+	public void setCurPage(int curPage) {
+		this.curPage = curPage;
+	}
+	
+	public int caculateStart() {
+		return (curPage-1) * itemPerPage;
+	}
+}

@@ -1,0 +1,15 @@
+{
+    "version": "8.0.0",
+    "description": "弹出窗口",
+    "name": "jquery-msgbox",
+    "main": "jquery.msgbox.js",
+    "dependencies": [
+        "jquery@1.8.3",
+        "css"
+    ],
+    "shim": {
+        "jquery.msgbox.js": {
+            "deps": ["jquery", "css!jquery.msgbox.css"]
+        }
+    }
+}

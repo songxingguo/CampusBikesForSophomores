@@ -1,0 +1,6 @@
+{
+    "version": "3.10.2",
+    "description": "J这是一个具有一致接口、模块化、高性能等特性的 JavaScript 工具库。 http://lodashjs.com/",
+    "name": "lodash",
+    "main": "main.js"
+}

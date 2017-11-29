@@ -1,0 +1,88 @@
+@import (reference) "/css/base";
+
+@width: 350px;
+body {
+  color: #555;
+  background: url(/img/login-bg.png) repeat;
+}
+
+#particles{
+  position: fixed;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+.logo{
+  display: block;
+  .size(332px, 103px);
+  background-image: url(/img/logo-dark.png);
+  margin: 0 auto;
+}
+
+.title{
+  font-size: 18px;
+  text-align: center;
+  margin: 20px 0 40px 0;
+}
+
+.login-form{
+  margin: 150px auto;
+  width: @width;
+}
+
+.group-inputs {
+  padding: 1px 0;
+  border: 1px solid #d5d5d5;
+  border-radius: 3px;
+  .input-wrapper {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    +.input-wrapper {
+      border-top: 1px solid #e8e8e8
+    }
+    input {
+      padding: 15px 8px;
+      height: 48px;
+      width: 100%;
+      font-size: 14px;
+      line-height: 18px;
+      color: #787878;
+      border: 0;
+      outline: 0;
+      &,&:focus {
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        background: #fff
+      }
+      &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px #fff inset;
+        -webkit-text-fill-color: #555;
+      }
+    }
+  }
+}
+
+.forget{
+  padding: 0;
+}
+
+.btn-block{
+  margin: 20px 0;
+  &#cert-login-btn{
+    margin-top: 50px;
+  }
+}
+
+#footer{
+    background-color: transparent;
+    text-align: center;
+    color: #CCBFBF;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+

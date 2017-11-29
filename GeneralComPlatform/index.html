@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+	<title>校园自行车租赁管理系统</title>
+	<link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+	<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.4/src/SearchInfoWindow_min.css" />
+	<link rel="import" href="parts/meta.tpl?__inline">
+    <link rel="import" href="parts/shim/shim-non-responsive.tpl?__inline">
+</head>
+<body style="overflow-x:hidden;min-width: 1200px;">
+	<!--登录页面-->
+	<div ui-view>
+	</div>
+
+	<script data-main="require-config.js" src="require.js"></script>
+	<script type="text/javascript">
+		require(['contest-app/app']);
+	</script>
+</body>
+</html>

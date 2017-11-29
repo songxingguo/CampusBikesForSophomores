@@ -1,0 +1,15 @@
+{
+    "version": "1.3.0",
+    "description": "显示表单验证错误信息的指令",
+    "name": "angular-messages",
+    "main": "angular-messages.js",
+    "dependencies": [
+        "angular"
+    ],
+    "shim": {
+        "angular-messages.js": {
+            "deps": ["angular"],
+            "exports": "'ngMessages'"
+        }
+    }
+}

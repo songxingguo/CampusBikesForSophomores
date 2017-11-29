@@ -1,0 +1,16 @@
+{
+    "version": "1.0.0",
+    "description": "下拉指令",
+    "name": "ui-dropdown",
+    "main": "ui-dropdown.js",
+    "dependencies": [
+        "angular",
+        "bootstrap"
+    ],
+    "shim": {
+        "ui-dropdown.js": {
+             "deps": ["angular"],
+            "exports": "'ui.dropdown'"
+        }
+    }
+}

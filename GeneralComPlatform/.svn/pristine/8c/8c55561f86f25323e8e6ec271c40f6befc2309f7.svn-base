@@ -1,0 +1,71 @@
+@import (reference) "/css/base";
+
+#header{
+    background: #0767c8;
+    background: linear-gradient(to bottom,#086ed5, #0569ca);
+    border-bottom: 1px solid #045eac;
+    box-shadow: 0 1px 2px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.15);
+    color: white;
+    padding: 15px 0;
+    min-width: 1130px;
+    .logo{
+        background: url(/img/logo.png);
+        .size(167px, 41px);
+    }
+
+    .container-fluid{
+        position: relative;
+    }
+
+    .btn-blue{
+        border: 1px solid #045bb2;
+        background: #0e78e7;
+        background: linear-gradient(to bottom,#0e7bef,#0d73da);
+        box-shadow: 0 1px 2px rgba(0,0,0,.05),inset 0 1px 1px rgba(255,255,255,.15);
+        text-shadow: 1px 1px 1px #40553c;
+        color: white;
+        &:hover{
+            background: #2488ff;
+            background: linear-gradient(to bottom,#2488ff, #246ddd);
+            color: white;
+        }
+        &:active{
+            background: #0e6dd0;
+            background: linear-gradient(to bottom, #0e6dd0, #0a62b1);
+        }
+    }
+
+    .button-wrap{
+        position: absolute;
+        right: 15px;
+        top: 5px;
+        .btn{
+            margin-left: 15px;
+        }
+    }
+
+    #user-avatar{
+        .size(32px);
+        cursor: pointer;
+        margin-left: 20px;
+    }
+
+    #login-out{
+        color: white;
+        margin-left: 0;
+        text-decoration: none;
+    }
+
+    #back-home{
+        color: #81B6EA;
+        border: 1px solid;
+        padding: 4px 10px;
+        margin-right: 0;
+        text-decoration: none;
+        margin-right: 30px;
+        &:hover{
+            color: white;
+        }
+    }
+
+}

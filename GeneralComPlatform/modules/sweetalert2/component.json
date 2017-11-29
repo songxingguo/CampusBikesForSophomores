@@ -1,0 +1,10 @@
+{
+    "version": "4.1.9",
+    "description": "A beautiful replacement for JavaScript's alert, fork of t4t5/sweetalert https://limonte.github.io/sweetalert2/",
+    "name": "sweetalert2",
+    "main": "sweetalert2.js",
+    "dependencies": [
+        "css",
+        "es6-promise"
+    ]
+}

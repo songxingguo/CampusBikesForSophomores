@@ -1,0 +1,144 @@
+/*密码框样式*/
+.user_password{
+  background-color: #fff;
+  border: 1px solid #d2d2d2;
+  height: 30px;
+  line-height: 30px;
+  margin: auto;
+  text-align: left;
+  width: 315px;
+  padding-left:8px;
+}
+
+/*用户备注*/
+.remark_user{
+  width:843px;
+}
+
+/*灰色按钮*/
+a.button.gray{
+  background-color: rgba(204, 204, 204, 1);
+  border-color:rgba(204, 204, 204, 1);
+  color:#ffffff;
+}
+
+/*紫色按钮*/
+a.button.purple{
+  background-color: rgba(153, 102, 255, 1);
+  border-color:rgba(153, 102, 255, 1);
+  color:#ffffff;
+}
+
+.selectRole{
+  margin-left:25px;
+}
+
+.icon-circle {
+  width:25px;
+  height:25px;
+  float: left;
+  border-radius: 12px;
+  color:#fff;
+  font-size: 16px;
+  margin-right: 10px;
+  text-align: center;
+  background-color: #af95e4;
+}
+.dotted_line {
+  margin: -16px 0 0 0;
+  border-top:1px dashed #af95e4;
+  height: 1px;
+  overflow:hidden;
+}
+.dotted_line_position {
+  float: right;
+  vertical-align: middle;
+  margin-top: 29px;
+}
+
+.user_key {
+  width: 10%;
+}
+
+.user_detail_key {
+  width: 13%;
+}
+
+/*文本框样式*/
+.user_textarea {
+  width: 92.5%;
+  padding-left: 10px;
+}
+
+.user_detail_td {
+  width:37%;
+}
+
+/*多选框样式*/
+.user_select {
+  padding-left: 5px;
+  padding-right: 8px;
+}
+
+.caret_top{
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid;
+  display: inline-block;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  width: 0;
+}
+.caret_bottom {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid;
+  display: inline-block;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  width: 0;
+}
+
+.multiselect-container {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width:315px;
+}
+
+.dropdown-menu{
+  background-clip: padding-box;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+  display: none;
+  float: left;
+  font-size: 14px;
+  left: 0;
+  list-style: outside none none;
+  min-width: 160px;
+  padding: 5px 10px;
+  position: absolute;
+  text-align: left;
+  top: 100%;
+  z-index: 1000;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.dropdown-menu li{
+  margin-bottom:10px;
+}
+
+.myStyleCheckBox{
+  cursor: default;
+}
+
+
+
+
+

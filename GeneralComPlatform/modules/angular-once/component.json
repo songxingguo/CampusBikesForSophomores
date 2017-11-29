@@ -1,0 +1,15 @@
+{
+    "version": "0.1.9",
+    "description": "[性能优化]对于不需要双向绑定的model使用once的指令绑定数据.减少watcher优化性能",
+    "name": "angular-once",
+    "main": "angular-once.js",
+    "dependencies": [
+        "angular"
+    ],
+    "shim": {
+        "angular-once.js": {
+            "deps": ["angular"],
+            "exports": "'once'"
+        }
+    }
+}

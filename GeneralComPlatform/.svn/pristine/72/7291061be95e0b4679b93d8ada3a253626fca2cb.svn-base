@@ -1,0 +1,24 @@
+{
+    "version": "3.5.0",
+    "description": "zTree 是一个依靠 jQuery 实现的多功能 “树插件”。优异的性能、灵活的配置、多种功能的组合是 zTree 最大优点",
+    "name": "jquery-ztree",
+    "main": "jquery.ztree.core.js",
+    "dependencies": [
+        "jquery@1.8.3",
+        "css"
+    ],
+    "shim": {
+        "jquery.ztree.core.js": {
+            "deps": ["jquery", "css!zTreeStyle.css"]
+        },
+         "jquery.ztree.excheck.js": {
+            "deps": ["jquery"]
+        },
+         "jquery.ztree.exedit.js": {
+            "deps": ["jquery"]
+        },
+         "jquery.ztree.exhide.js": {
+            "deps": ["jquery"]
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "version": "2.0.4",
+    "description": "截图工具",
+    "name": "jquery-jcrop",
+    "main": "jcrop.js",
+    "dependencies": [
+        "jquery@^1.8.3"
+            ],
+    "shim": {
+        "jcrop.js": {
+            "deps": ["jquery", "css!jcrop.css"]
+        }
+    }
+}

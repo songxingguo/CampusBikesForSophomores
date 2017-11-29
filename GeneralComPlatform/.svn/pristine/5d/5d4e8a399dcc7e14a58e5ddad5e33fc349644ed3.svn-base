@@ -1,0 +1,6 @@
+{
+    "version": "2.1.8",
+    "description": "base64编码和解码",
+    "name": "base64",
+    "main": "base64.js"
+}

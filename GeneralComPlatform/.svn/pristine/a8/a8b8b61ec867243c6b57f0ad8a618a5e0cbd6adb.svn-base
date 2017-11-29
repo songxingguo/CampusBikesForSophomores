@@ -1,0 +1,6 @@
+{
+    "version": "0.1.2",
+    "description": "An AMD loader plugin for loading css resources",
+    "name": "css",
+    "main": "css.js"
+}

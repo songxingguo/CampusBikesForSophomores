@@ -1,0 +1,15 @@
+{
+    "version": "1.0.0",
+    "description": "回到页面顶部 提供了一个全局的goTop方法",
+    "name": "gotop",
+    "main": "gotop.js",
+    "dependencies": [
+        "jquery@^1.8.3",
+        "css"
+    ],
+    "shim": {
+        "gotop.js": {
+            "deps": ["jquery","css!gotop.css"]
+        }
+    }
+}

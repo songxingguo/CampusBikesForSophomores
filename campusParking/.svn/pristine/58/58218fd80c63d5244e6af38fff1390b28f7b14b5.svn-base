@@ -1,0 +1,24 @@
+package com.cp.dto.search;
+
+public class RoleSearchDTO {
+
+	private String roleName;
+	
+	private String operatorName;
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	public String getOperatorName() {
+		return operatorName;
+	}
+
+	public void setOperatorName(String operatorName) {
+		this.operatorName = operatorName;
+	}
+}

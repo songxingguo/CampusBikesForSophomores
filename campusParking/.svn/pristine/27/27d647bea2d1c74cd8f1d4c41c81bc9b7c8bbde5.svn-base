@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cp.dao.BicycleRentalRecordMapperExtra" >
+	<select id="getRecords" resultType="java.util.HashMap">
+		SELECT
+			brr.id,
+			DATE_FORMAT(start_time,"yyyy-MM-dd HH:mm:ss") AS startTime,
+			DATE_FORMAT(end_time,"yyyy-MM-dd HH:mm:ss") AS endTime,
+			b.bicycle_no AS bicycleNo
+		FROM
+			bicycle_rental_record AS brr,
+			bicycle AS b
+		WHERE
+			brr.bicycle_id = b.id
+	</select>
+</mapper>

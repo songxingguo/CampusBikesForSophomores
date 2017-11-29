@@ -1,0 +1,12 @@
+@import (reference) "/css/base";
+
+/*利用后代选择器隔离css
+ *所有的css定义需要使用一个app内唯一的id或class 作为命名空间 例如: #index
+*/
+#index {
+
+  .class {
+
+  }
+
+}

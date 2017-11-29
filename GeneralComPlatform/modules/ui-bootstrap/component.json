@@ -1,0 +1,16 @@
+{
+    "version": "0.13.0",
+    "description": "bootstrap3的组件的angularjs版本",
+    "name": "ui-bootstrap",
+    "main": "ui-bootstrap.js",
+    "dependencies": [
+        "angular",
+        "bootstrap"
+    ],
+    "shim": {
+        "ui-bootstrap.js": {
+            "deps": ["angular"],
+            "exports": "'ui.bootstrap'"
+        }
+    }
+}

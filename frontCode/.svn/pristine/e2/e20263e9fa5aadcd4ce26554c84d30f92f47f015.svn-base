@@ -1,0 +1,66 @@
+<!--引入center.css-->
+<link rel='stylesheet' href='../cbr-app/center/center.css' />
+
+<!--登录-->
+<div class='center-body'>
+    <!--头部  -->
+    <header class='center-header' >
+        <div class="center-nav bc">
+            <ul>
+                <li class="logo">
+                    <img src="../../images/logo.png" class="img-rounded mb5" style="width: 81px; height:64px;" alt="logo"/>
+                    <span class="logo-font">校园租车</span>
+                </li>
+                <li class="nav"><a>租车</a></li>
+                <li class="nav"><a>还车</a></li>
+                <li class="nav"><a>充值</a></li>
+                <li class="nav"><a>基本信息</a></li>
+                <li class="center-nav-select">
+                    <!--<ul>-->
+                        <!--<li>-->
+                            <!--<img src="../../images/logo2.png" class="img-rounded" style="width: 41px; height:32px;" alt="index"/>-->
+                        <!--</li>-->
+                        <!--<li class="ml10"><a ng-click="switchLogin()">登录</a></li>-->
+                        <!--<li>|</li>-->
+                        <!--<li><a ng-click="switchLogin()" style="color: #1abb9c">注册</a></li>-->
+                    <!--</ul>-->
+
+                    <ul ui-sref="personalInfo" style="cursor: pointer;">
+                        <li>
+                            <img src="../../images/personalHead.png" class="img-circle" style="width: 45px; height:45px;" alt="index"/>
+                        </li>
+                        <li class="ml10"><a ng-click="switchLogin()">宋兴国</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!--内容  -->
+    <div id="center-content" ui-view>
+
+    </div>
+
+    <!--底部-->
+    <footer class='center-footer'>
+        <div class="center-footer-content bc mt180">
+            <div class="center-footer-logo fl">
+                <img src="../../images/logo3.png">
+            </div>
+
+            <div class="center-footer-right fr">
+                <ul>
+                    <li class="center-footer-link"><a>公司官网</a></li>
+                    <li>|</li>
+                    <li class="center-footer-link"><a>加入我们</a></li>
+                    <li>|</li>
+                    <li class="center-footer-link"><a>申请合作</a></li>
+                    <li class="center-footer-copyright">
+                        <span>@copyright重庆士继工学有限公司</span>
+                        <span class="ml10"><a>渝公网安备 50010702501096号</a></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</div>

@@ -1,0 +1,9 @@
+{
+    "version": "2.4.1",
+    "description": "A jQuery menu plugin",
+    "name": "jquery-metisMenu",
+    "main": "metisMenu.js",
+    "dependencies": [
+        "jquery"
+    ]
+}

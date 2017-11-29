@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cp.dao.DepartmentMapperExtra" >
+	<select id="getMaxChildCode" resultType="String">
+		SELECT MAX(code) FROM department
+		<if test="parentCode != null">
+			WHERE parent_code = #{parentCode,jdbcType=VARCHAR}
+		</if>
+		<if test="parentCode == null">
+			WHERE parent_code IS NULL
+		</if>
+	</select>
+	
+	<update id="updateHasChild">
+		UPDATE department SET has_child = #{hasChild,jdbcType=TINYINT} WHERE code = #{parentCode,jdbcType=VARCHAR}
+	</update>
+	
+	<select id="getDepartmentById" resultType="java.util.HashMap">
+		SELECT d.id,d.`name`,d.remark,d.`code`,d.parent_code AS parentCode,o.`name` AS operatorName
+		FROM department AS d,operator AS o WHERE d.operator_id = d.id AND d.id = #{id,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getParentCodeById" resultType="String">
+		SELECT parent_code FROM department WHERE id = #{id,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getNumOfChild" resultType="int">
+		SELECT COUNT(id) FROM department WHERE parent_code = #{parentCode,jdbcType=VARCHAR}
+	</select>
+	
+	<delete id="deleteDepartments">
+		DELETE FROM department WHERE id IN 
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+	
+	<sql id="limitCondition">
+		<if test="start >= 0">
+			LIMIT #{start,jdbcType=INTEGER},#{end,jdbcType=INTEGER}
+		</if>
+	</sql>
+	
+	<select id="getDepartments" resultType="java.util.HashMap">
+		SELECT d.id,d.`name`,d.remark,d.`code`,d.parent_code AS parentCode,o.`name` AS operatorName
+		FROM department AS d,operator AS o WHERE d.operator_id = d.id AND d.operator_id = #{operatorId,jdbcType=VARCHAR}
+		<if test="dsDTO.name != null">
+			AND d.`name` LIKE <![CDATA[CONCAT('%',#{dsDTO.name,jdbcType=VARCAHR},'%')]]>
+		</if>
+		<if test="dsDTO.operatorName != null">
+			AND o.`name` LIKE <![CDATA[CONCAT('%',#{dsDTO.operatorName,jdbcType=VARCAHR},'%')]]>
+		</if>
+		<include refid="limitCondition"></include>
+	</select>
+</mapper>

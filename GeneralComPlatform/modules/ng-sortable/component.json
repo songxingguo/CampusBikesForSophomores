@@ -1,0 +1,16 @@
+{
+    "version": "1.2.2",
+    "description": "AngularJS Library for Drag and Drop, supports Sortable and Draggable. No JQuery/JQuery UI used. Supports Touch devices. http://a5hik.github.io/ng-sortable/",
+    "name": "ng-sortable",
+    "main": "ng-sortable.js",
+    "dependencies": [
+        "angular",
+        "css"
+    ],
+    "shim": {
+        "ng-sortable.js": {
+            "deps": ["angular", "css!ng-sortable.css"],
+            "exports": "'ui.sortable'"
+        }
+    }
+}

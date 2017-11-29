@@ -1,0 +1,6 @@
+{
+    "version": "2.0.1",
+    "description": "http://github.com/requirejs/domReady for details",
+    "name": "domReady",
+    "main": "domReady.js"
+}

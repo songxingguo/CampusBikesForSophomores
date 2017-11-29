@@ -1,0 +1,31 @@
+/**
+ *  Created by songxingguo on 2017/7/2.
+ *  登录
+ */
+
+define(['angularAMD', 'jquery', 'bootstrap', 'shiv', 'respond', 'login/login.service'],
+    function (angularAMD) {
+
+    //延迟加载的module需要调用
+    angularAMD.processQueue();
+
+    //这里必须自己写数组形式的注入,工具不能识别这个格式自动修改
+    return ['$scope','login','$state', function(s,login,$state) {
+
+        /**
+         *  注册
+         */
+        s.registerObject = {};
+        s.register = function () {
+            login.register(s.registerObject).then(function (data) {
+                if (data.state = 'true') {
+
+                } else {
+
+                }
+            });
+        };
+
+    }];
+
+});

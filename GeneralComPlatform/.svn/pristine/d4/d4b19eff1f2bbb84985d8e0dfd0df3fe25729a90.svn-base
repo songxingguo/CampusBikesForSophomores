@@ -1,0 +1,10 @@
+{
+    "version": "1.4.4",
+    "description": "一个打印插件",
+    "name": "jquery-jqprint",
+    "main": "jquery-jqprint.js",
+    "dependencies": [
+        "jquery"
+    ]
+}
+

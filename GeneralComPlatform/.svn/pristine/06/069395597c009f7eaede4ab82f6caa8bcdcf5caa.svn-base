@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="import" href="parts/meta.tpl?__inline">
+    <!--
+    @require css/iconfont/iconfont.css
+    @require css/gpw.less
+    -->
+    <!--STYLE_PLACEHOLDER-->
+    <link rel="import" href="parts/shim/shim-non-responsive.tpl?__inline">
+</head>
+<body>
+<link rel="import" href="parts/header/header.tpl?__inline">
+<div class="container-fluid" style="min-height: 600px">
+    <h1 class="content-null">该页面已经不存在了</h1>
+</div>
+<link rel="import" href="parts/footer/footer.tpl?__inline">
+<script src="require.js"></script>
+<script src="require-config.js"></script>
+<!--SCRIPT_PLACEHOLDER-->
+</body>
+</html>

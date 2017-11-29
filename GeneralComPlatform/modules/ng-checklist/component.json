@@ -1,0 +1,15 @@
+{
+    "version": "1.0.0",
+    "description": "AngularJS directive for list of checkboxes",
+    "name": "ng-checklist",
+    "main": "ng-checklist.js",
+    "dependencies": [
+        "angular"
+    ],
+    "shim": {
+        "ng-checklist.js": {
+            "deps": ["angular"],
+            "exports": "'checklist-model'"
+        }
+    }
+}

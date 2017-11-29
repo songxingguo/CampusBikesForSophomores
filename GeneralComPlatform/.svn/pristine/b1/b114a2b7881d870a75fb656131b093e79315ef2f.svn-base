@@ -1,0 +1,51 @@
+// Variables
+@gray-darker: lighten(#000, 13.5%);
+@gray-dark: lighten(#000, 20%);
+@gray: lighten(#000, 33.5%);
+@gray-light: lighten(#000, 60%);
+@gray-lighter: lighten(#000, 93.5%);
+@gray-lightest: lighten(#000, 97.25%);
+
+// Global Styles
+body {
+  background-color: @gray-lightest;
+  min-width: 1280px !important;
+}
+
+.ie-padding-fix{
+  padding-right: 15px !important;
+}
+
+#page-wrapper {
+  padding: 0 15px;
+  min-height: 900px;
+  position: inherit;
+  margin: 0 0 0 250px;
+  padding: 0;
+  border-left: 1px solid darken(@gray-lightest, 6.5%);
+  background-color: @gray-lightest;
+}
+
+.container-fluid,.container{
+  background-color: @gray-lightest;
+  padding-top: 15px;
+  min-width: 1000px !important;
+}
+
+iframe.content-wrap{
+  width: 100%;
+  min-height: 800px;
+}
+
+/*自动完成组件弹出层*/
+ul.popup {
+  max-height: 300px;
+  overflow-x: auto;
+}
+
+
+
+
+
+
+

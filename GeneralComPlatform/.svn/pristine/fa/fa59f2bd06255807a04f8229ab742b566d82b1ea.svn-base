@@ -1,0 +1,14 @@
+{
+    "version": "0.2.13",
+    "description": "angular前端路由",
+    "name": "ui-router",
+    "main": "ui-router.js",
+    "dependencies": [
+        "angular"
+    ],
+    "shim": {
+        "ui-router.js": {
+            "deps": ["angular"]
+        }
+    }
+}

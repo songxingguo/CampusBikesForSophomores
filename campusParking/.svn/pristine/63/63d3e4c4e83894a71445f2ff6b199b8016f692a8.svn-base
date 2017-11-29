@@ -1,0 +1,16 @@
+package com.cp.controller.login;
+
+import javax.annotation.Resource;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cp.service.login.LoginService;
+
+@RestController
+@RequestMapping("/api")
+public class LoginController {
+
+	@Resource(name="loginServiceImpl")
+	private LoginService loginService;
+}

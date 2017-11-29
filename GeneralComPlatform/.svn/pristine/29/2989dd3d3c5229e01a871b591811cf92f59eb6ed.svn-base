@@ -1,0 +1,16 @@
+{
+    "version": "0.6.0",
+    "description": "intercepts XHR requests and creates a loading bar.",
+    "name": "angular-loading-bar",
+    "main": "angular-loading-bar.js",
+    "dependencies": [
+        "angular",
+        "css"
+    ],
+    "shim": {
+        "angular-loading-bar.js": {
+            "deps": ["angular","css!angular-loading-bar.css"],
+            "exports": "'loading-bar'"
+        }
+    }
+}

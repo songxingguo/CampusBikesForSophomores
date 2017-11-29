@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  
+                        http://www.springframework.org/schema/context  
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+                        http://www.springframework.org/schema/mvc  
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+     
+    <!-- 自动扫描 -->
+    <context:component-scan base-package="com.cp" />
+    <!-- 引入配置文件 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+           <list>
+              <!-- 这里支持多种寻址方式：classpath和file -->
+              <value>classpath:jdbc.properties</value>
+              <value>classpath:redis.properties</value>
+              <value>classpath:token.properties</value>
+              <value>classpath:remoteService.properties</value>
+            </list>  
+        </property>  
+	</bean>
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="${jdbc.initialSize}"></property>
+		<!-- 连接池最大数量 -->
+		<property name="maxActive" value="${jdbc.maxActive}"></property>
+		<!-- 连接池最大空闲 -->
+		<property name="maxIdle" value="${jdbc.maxIdle}"></property>
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="${jdbc.minIdle}"></property>
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="${jdbc.maxWait}"></property>
+	</bean>
+	
+	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 自动扫描mapping.xml文件 -->
+		<property name="mapperLocations" value="classpath:com/cp/mapping/*.xml"></property>
+	</bean>
+	
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.cp.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+	
+	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- redis配置 -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.maxTotal}" />
+        <property name="maxIdle" value="${redis.maxIdle}" />
+        <property name="numTestsPerEvictionRun" value="${redis.numTestsPerEvictionRun}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${redis.timeBetweenEvictionRunsMillis}" />
+        <property name="minEvictableIdleTimeMillis" value="${redis.minEvictableIdleTimeMillis}" />
+        <property name="softMinEvictableIdleTimeMillis" value="${redis.softMinEvictableIdleTimeMillis}" />
+        <property name="maxWaitMillis" value="${redis.maxWaitMillis}"/>
+        <property name="testOnBorrow" value="${redis.testOnBorrow}" />
+        <property name="testWhileIdle" value="${redis.testWhileIdle}"/>
+        <property name="testOnReturn" value="${redis.testOnReturn}"/>
+        <property name="jmxEnabled" value="${redis.jmxEnabled}"/>
+        <property name="jmxNamePrefix" value="${redis.jmxNamePrefix}"/>
+        <property name="blockWhenExhausted" value="${redis.blockWhenExhausted}"/>
+    </bean>
+	
+	<!-- redis连接 -->
+	<bean id = "jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg index="0" ref="jedisPoolConfig"/>
+		<constructor-arg index="1" value="${redis.host}"/>
+		<constructor-arg index="2" value="${redis.port}" type="int"/>
+		<constructor-arg index="3" value="${redis.timeout}" type="int"/>
+		<constructor-arg index="4" value="${redis.password}"/>
+	</bean>
+	
+	<!--管理验证信息的bean-->
+	<bean id="tokenManager" class="com.cp.authorization.manager.impl.RedisTokenManager">
+	       <!--Token失效时间-->
+	       <property name="tokenExpirationSeconds" value="${token.expirationSeconds}" />
+	       <!--Redis客户端-->
+	       <property name="jedisPool" ref="jedisPool" />
+	       <!-- 配置为多点登陆 -->
+	       <property name="singleTokenWithUser" value="${token.isSSO}"></property>
+	       <!-- token签发者 -->
+	       <property name="issuer" value="${token.issuer}"></property>
+	       <!-- token面向用户 -->
+	       <property name="subject" value="${token.subject}"></property>
+	       <!-- apiKey -->
+	       <property name="apiKey" value="${token.apiKey}"></property>
+	</bean>
+	
+	<!-- 管理验证码信息的bean -->
+	<bean id="authenticationCodeManager" class="com.cp.service.register.manager.impl.AuthenticationCodeManagerImpl">
+		<property name="effectiveTime" value="120"></property>
+		<property name="jedisPool" ref="jedisPool"></property>
+	</bean>
+	
+	<!-- 短信服务相关 开始 -->
+    <bean id="shortMessageService" class="com.cp.util.sms.impl.ShortMessageServiceImpl">
+    	<property name="url" value="${remote.SMS_URL}"></property>
+    	<property name="appId" value="${remote.SMS_APP_ID}"></property>
+    	<property name="requestPacketFormatter" ref="requestPacketFormatter"></property>
+    </bean>
+    
+    <!-- 请求包格式 -->
+    <bean id="requestPacketFormatter" class="com.cp.util.sms.RequestPacketFormatter">
+    	<property name="appKey" value="${remote.RPF_APP_KEY}"></property>
+    </bean>
+    <!-- 短信服务相关 结束 -->
+</beans>
